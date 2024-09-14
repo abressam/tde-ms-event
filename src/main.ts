@@ -63,8 +63,18 @@ class App {
       .setDescription(this.config.get('app.description'))
       .setVersion(this.config.get('app.version'))
       .addServer(this.config.get('app.prefix'))
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          name: 'JWT',
+          in: 'header',
+        },
+        'auth',
+      )
       .build();
-
+      
     const document = SwaggerModule.createDocument(
       this.app,
       this.swaggerConfig,

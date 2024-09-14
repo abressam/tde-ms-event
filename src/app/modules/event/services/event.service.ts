@@ -27,7 +27,8 @@ export class EventService implements EventServiceInterface {
      };
   }
 
-  async postEvent(body: PostEventReqDto): Promise<GetEventResDto> {
+  async postEvent(body: PostEventReqDto, isAdmin: boolean): Promise<GetEventResDto> {
+    this.validateAuth(isAdmin);
 
     await this.checkEventExists(body.name);
 
@@ -41,7 +42,9 @@ export class EventService implements EventServiceInterface {
     };
   }
 
-  async putEvent(body: PutEventReqDto): Promise<GetEventResDto> {
+  async putEvent(body: PutEventReqDto, isAdmin: boolean): Promise<GetEventResDto> {
+    this.validateAuth(isAdmin);
+
     const eventOld = await this.eventModel.findByPk(body.id);
     this.validateEvent(eventOld);
 
@@ -71,7 +74,8 @@ export class EventService implements EventServiceInterface {
     };
   }
 
-  async deleteEvent(eventId: number): Promise<DeleteEventResDto> {
+  async deleteEvent(eventId: number, isAdmin: boolean): Promise<DeleteEventResDto> {
+    this.validateAuth(isAdmin);
     const event = await this.eventModel.findByPk(eventId);
 
     this.validateEvent(event);
@@ -97,6 +101,12 @@ export class EventService implements EventServiceInterface {
 
     if (existingEvent) {
       throw new HttpException('Event alreay registered', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  private validateAuth(isAdmin: boolean) {
+    if (!isAdmin) {
+      throw new HttpException('Invalid session', HttpStatus.UNAUTHORIZED);
     }
   }
 }

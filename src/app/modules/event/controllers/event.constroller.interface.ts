@@ -6,7 +6,7 @@ import { PutEventReqDto } from '@app/modules/event/dtos/requests/put-event-req.d
 
 export interface EventControllerInterface {
     getEvent(): Promise<GetEventResDto>;
-    postEvent(body: PostEventReqDto,): Promise<GetEventResDto>;
-    putEvent(body: PutEventReqDto): Promise<GetEventResDto>;
-    deleteEvent(params: DeleteEventReqDto): Promise<DeleteEventResDto>;
+    postEvent(body: PostEventReqDto, req: Request): Promise<GetEventResDto>;
+    putEvent(body: PutEventReqDto, req: Request): Promise<GetEventResDto>;
+    deleteEvent(params: DeleteEventReqDto, req: Request): Promise<DeleteEventResDto>;
 }

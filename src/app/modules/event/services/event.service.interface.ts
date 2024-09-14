@@ -5,7 +5,7 @@ import { PutEventReqDto } from '@app/modules/event/dtos/requests/put-event-req.d
 
 export interface EventServiceInterface {
   getEvent(): Promise<GetEventResDto>;
-  postEvent(body: PostEventReqDto): Promise<GetEventResDto>;
-  putEvent(body: PutEventReqDto): Promise<GetEventResDto>;
-  deleteEvent(eventId: number): Promise<DeleteEventResDto>;
+  postEvent(body: PostEventReqDto, isAdmin: boolean): Promise<GetEventResDto>;
+  putEvent(body: PutEventReqDto, isAdmin: boolean): Promise<GetEventResDto>;
+  deleteEvent(eventId: number, isAdmin: boolean): Promise<DeleteEventResDto>;
 }

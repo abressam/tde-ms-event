@@ -10,6 +10,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiTags,
+  ApiBearerAuth
 } from '@nestjs/swagger';
 import {
   Controller,
@@ -17,6 +18,7 @@ import {
   Put,
   Post,
   Delete,
+  Request,
   Body,
   Param,
   HttpCode,
@@ -56,6 +58,7 @@ export class EventController implements EventControllerInterface {
 
   @Post('post')
   @HttpCode(200)
+  @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Post the event data' })
   @ApiResponse({
     status: 200,
@@ -67,12 +70,13 @@ export class EventController implements EventControllerInterface {
     description: 'Internal server error',
     type: ErrorDto,
   })
-  async postEvent(@Body() body: PostEventReqDto) {
+  async postEvent(@Body() body: PostEventReqDto, @Request() req: Request) {
     const logger = new Logger(EventController.name);
 
     try {
+      const isAdmin = req['isAdmin'];
       logger.log('postEvent()');
-      return await this.eventService.postEvent(body);
+      return await this.eventService.postEvent(body, isAdmin);
     } catch (error) {
       logger.error(error);
       throw new HttpException(error.message, error.getStatus());
@@ -82,6 +86,7 @@ export class EventController implements EventControllerInterface {
 
   @Put('put')
   @HttpCode(200)
+  @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Put the event data' })
   @ApiResponse({
     status: 200,
@@ -93,12 +98,13 @@ export class EventController implements EventControllerInterface {
     description: 'Internal server error',
     type: ErrorDto,
   })
-  async putEvent(@Body() body: PutEventReqDto) {
+  async putEvent(@Body() body: PutEventReqDto, @Request() req: Request) {
     const logger = new Logger(EventController.name);
 
     try {
+      const isAdmin = req['isAdmin'];
       logger.log('putEvent()');
-      return await this.eventService.putEvent(body);
+      return await this.eventService.putEvent(body, isAdmin);
     } catch (error) {
       logger.error(error);
       throw new HttpException(error.message, error.getStatus());
@@ -107,6 +113,7 @@ export class EventController implements EventControllerInterface {
 
   @Delete('delete')
   @HttpCode(200)
+  @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Delete the event data' })
   @ApiResponse({
     status: 200,
@@ -118,13 +125,14 @@ export class EventController implements EventControllerInterface {
     description: 'Internal server error',
     type: ErrorDto,
   })
-  async deleteEvent(@Param() params: DeleteEventReqDto) {
+  async deleteEvent(@Param() params: DeleteEventReqDto, @Request() req: Request) {
     const logger = new Logger(EventController.name);
 
     try {
       const eventId = params.id;
+      const isAdmin = req['isAdmin'];
       logger.log('deleteEvent()');
-      return await this.eventService.deleteEvent(eventId);
+      return await this.eventService.deleteEvent(eventId, isAdmin);
     } catch (error) {
       logger.error(error);
       throw new HttpException(error.message, error.getStatus());
