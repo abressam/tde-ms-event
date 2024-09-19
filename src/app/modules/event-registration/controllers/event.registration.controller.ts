@@ -2,7 +2,7 @@ import { EventRegistrationService } from '@app/modules/event-registration/servic
 import { EventRegistrationControllerInterface } from '@app/modules/event-registration/controllers/event.registration.controller.interface';
 import { ErrorDto } from '@app/modules/session/dtos/error.dto';
 import { EventRegistrationDto } from '@app/modules/event-registration/dtos/event.registration.dto';
-import { EventRegistration } from '@app/modules/event-registration/model/event.registration.model';
+import { EventRegistration } from '@app/modules/event-registration/models/event.registration.model';
 import { GetEventRegistrationResDto } from '@app/modules/event-registration/dtos/responses/get-event-registration-res.dto';
 import { DeleteEventRegistrationResDto } from '@app/modules/event-registration/dtos/responses/delete-event-registration-res.dto';
 import {
@@ -57,6 +57,7 @@ export class EventRegistrationController implements EventRegistrationControllerI
 
   @Post('post')
   @HttpCode(200)
+  @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Post the event registration data' })
   @ApiResponse({
     status: 200,

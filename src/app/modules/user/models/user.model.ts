@@ -1,4 +1,4 @@
-import { EventRegistration } from '@app/modules/event-registration/model/event.registration.model';
+import { EventRegistration } from '@app/modules/event-registration/models/event.registration.model';
 import { Event } from '@app/modules/event/models/event.model';
 import { DataType, Table, Column, Model, BelongsToMany } from 'sequelize-typescript';
 

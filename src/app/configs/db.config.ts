@@ -1,4 +1,4 @@
-import { EventRegistration } from '@app/modules/event-registration/model/event.registration.model';
+import { EventRegistration } from '@app/modules/event-registration/models/event.registration.model';
 import { Event } from '@app/modules/event/models/event.model';
 import { User } from '@app/modules/user/models/user.model';
 import { SequelizeModuleOptions } from '@nestjs/sequelize';

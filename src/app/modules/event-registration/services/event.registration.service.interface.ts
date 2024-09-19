@@ -1,4 +1,4 @@
-import { EventRegistration } from '@app/modules/event-registration/model/event.registration.model';
+import { EventRegistration } from '@app/modules/event-registration/models/event.registration.model';
 import { GetEventRegistrationResDto } from '@app/modules/event-registration/dtos/responses/get-event-registration-res.dto';
 import { DeleteEventRegistrationResDto } from '@app/modules/event-registration/dtos/responses/delete-event-registration-res.dto';
 
