@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsEmail } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, IsBoolean } from 'class-validator';
 
 export class PostUserReqDto {
   @ApiProperty()
@@ -17,4 +17,9 @@ export class PostUserReqDto {
   @IsString()
   @IsNotEmpty()
   password: string;
+
+  @ApiProperty()
+  @IsBoolean()
+  @IsNotEmpty()
+  isAdmin: boolean;
 }

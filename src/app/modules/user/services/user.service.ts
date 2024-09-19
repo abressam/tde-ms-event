@@ -40,7 +40,8 @@ export class UserService implements UserServiceInterface {
     const createdUser = await this.userModel.create({
       name: body.name,
       email: body.email,
-      password: body.password
+      password: body.password,
+      isAdmin: body.isAdmin
     })
 
     const { password, ...user } = createdUser.toJSON();
