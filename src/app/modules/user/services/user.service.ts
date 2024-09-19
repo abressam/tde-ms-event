@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { DeleteUserResDto } from '@app/modules/user/dtos/responses/delete-user-res.dto';
 import { GetUserResDto } from '@app/modules/user/dtos/responses/get-user-res.dto';
 import { PutUserReqDto } from '@app/modules/user/dtos/requests/put-user-req.dto';
+import { PostUserReqDto } from '@app/modules/user/dtos/requests/post-user-req.dto';
 import { UserDto } from '@app/modules/user/dtos/user.dto';
 import { User } from '@app/modules/user/models/user.model';
 import { encodePassword } from '@app/modules/session/utils/session.util';
@@ -27,6 +28,30 @@ export class UserService implements UserServiceInterface {
     this.validateUser(user);
 
     return { user };
+  }
+
+  async postUser(body: PostUserReqDto): Promise<GetUserResDto> {
+    const salt = this.configService.get('auth.salt');
+
+    if (body.password) {
+      body.password = encodePassword(salt, body.password);
+    }
+
+    const createdUser = await this.userModel.create({
+      name: body.name,
+      email: body.email,
+      password: body.password
+    })
+
+    const { password, ...user } = createdUser.toJSON();
+
+    return {
+      user: {
+        name: user.name,
+        email: user.email,
+        isAdmin: user.is_admin,
+      },
+    };
   }
 
   async putUser(userId: number, body: PutUserReqDto): Promise<GetUserResDto> {

@@ -3,6 +3,7 @@ import { UserControllerInterface } from '@app/modules/user/controllers/user.cont
 import { ErrorDto } from '@app/modules/session/dtos/error.dto';
 import { DeleteUserResDto } from '@app/modules/user/dtos/responses/delete-user-res.dto';
 import { GetUserResDto } from '@app/modules/user/dtos/responses/get-user-res.dto';
+import { PostUserReqDto } from '@app/modules/user/dtos/requests/post-user-req.dto';
 import { PutUserReqDto } from '@app/modules/user/dtos/requests/put-user-req.dto';
 import {
   ApiOperation,
@@ -14,6 +15,7 @@ import {
   Controller,
   Get,
   Put,
+  Post,
   Delete,
   Request,
   Body,
@@ -27,7 +29,7 @@ import {
 export class UserController implements UserControllerInterface {
   constructor(private readonly userService: UserService) {}
 
-  @Get('info')
+  @Get('get')
   @HttpCode(200)
   @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Get the user data' })
@@ -54,7 +56,32 @@ export class UserController implements UserControllerInterface {
     }
   }
 
-  @Put('alter')
+  @Post('post')
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Post the user data' })
+  @ApiResponse({
+    status: 200,
+    description: 'Returns a JSON with the user data',
+    type: GetUserResDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error',
+    type: ErrorDto,
+  })
+  async postUser(@Body() body: PostUserReqDto) {
+    const logger = new Logger(UserController.name);
+
+    try {
+      logger.log('postUser()');
+      return await this.userService.postUser(body);
+    } catch (error) {
+      logger.error(error);
+      throw new HttpException(error.message, error.getStatus());
+    }
+  }
+
+  @Put('put')
   @HttpCode(200)
   @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Put the user data' })
@@ -81,7 +108,7 @@ export class UserController implements UserControllerInterface {
     }
   }
 
-  @Delete('remove')
+  @Delete('delete')
   @HttpCode(200)
   @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Delete the user data' })
