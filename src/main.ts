@@ -34,9 +34,7 @@ class App {
   }
 
   async bootstrap() {
-    this.app = await NestFactory.create(AppModule, {
-      logger: false,
-    });
+    this.app = await NestFactory.create(AppModule);
 
     this.config = this.app.get(ConfigService);
     this.app.enableCors(this.config.get('cors'));

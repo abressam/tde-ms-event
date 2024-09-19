@@ -1,4 +1,6 @@
-import { DataType, Table, Column, Model } from 'sequelize-typescript';
+import { EventRegistration } from '@app/modules/event-registration/model/event.registration.model';
+import { Event } from '@app/modules/event/models/event.model';
+import { DataType, Table, Column, Model, BelongsToMany } from 'sequelize-typescript';
 
 @Table({
   tableName: 'User',
@@ -19,4 +21,7 @@ export class User extends Model {
 
   @Column({ type: DataType.BOOLEAN, allowNull: false })
   isAdmin: boolean;
+
+  @BelongsToMany(() => Event, () => EventRegistration)
+  events: Event[];
 }

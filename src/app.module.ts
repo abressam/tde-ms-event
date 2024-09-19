@@ -19,7 +19,10 @@ import dbConfig from '@app/configs/db.config';
       isGlobal: true,
       load: [appConfig],
     }),
-    SequelizeModule.forRoot(dbConfig),
+    SequelizeModule.forRoot({
+      ...dbConfig,
+      synchronize: false,
+    }),  
   ],
 })
 export class AppModule implements NestModule {
