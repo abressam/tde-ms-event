@@ -98,6 +98,10 @@ Resultado das tabelas criadas:
 
 O cliente está designado na porta 8080 e se conecta com a porta 3306 do MySQL.
 
+```
+npm run start:dev
+```
+
 ![image](https://github.com/user-attachments/assets/7e600e1a-bb15-494c-b3d0-a0ec069f1b21)
 
 <div id='codigo' />
@@ -1230,19 +1234,21 @@ export default new App();
 
 # Demonstração Funcional
 
-### Criação de Usuário Administrador
+## User
+
+### POST Usuário Administrador
 
 ![image](https://github.com/user-attachments/assets/24182dc1-92a2-4e36-bdab-d7568d6d88ff)
 
 ![image](https://github.com/user-attachments/assets/231e456c-df2f-4662-8c46-3b6b03c7c2c1)
 
-### Criação de Usuário Comum
+### POST Usuário Comum
 
 ![image](https://github.com/user-attachments/assets/e95b07d4-422c-49fc-872d-dc43874c6c82)
 
 ![image](https://github.com/user-attachments/assets/b7a41cd1-7bbc-404b-8a72-4d344f31a0b4)
 
-### Resultado da Tabela User
+Resultado da Tabela User
 
 ![image](https://github.com/user-attachments/assets/6427740e-396d-4b14-a571-a2d539be57e7)
 
@@ -1258,12 +1264,25 @@ export default new App();
 
 ![image](https://github.com/user-attachments/assets/6b0ee678-b0c3-454f-a10a-d62080d25765)
 
+### DELETE de um Usuário
 
-### Criação de um Evento
+![image](https://github.com/user-attachments/assets/dbab5412-1c3b-485b-938e-429790b07ddc)
 
--> Resposta de erro:
+![image](https://github.com/user-attachments/assets/93bf265b-0b7f-4bef-82b8-5a96990f3450)
 
-* Usuários comuns não podem criar eventos
+## Session
+
+### POST Autenticação
+
+![image](https://github.com/user-attachments/assets/aa9aeca5-e220-430c-8583-dfaa3cbd7344)
+
+![image](https://github.com/user-attachments/assets/193297bd-868f-474d-bf91-c902139b8823)
+
+## Event
+
+### POST de um Evento (Erro)
+
+Usuários comuns não podem criar/modificar/deletar eventos
 
 ![image](https://github.com/user-attachments/assets/5df6cd62-ab25-4713-98d4-9a4a3e42478f)
 
@@ -1275,5 +1294,40 @@ export default new App();
 
 ![image](https://github.com/user-attachments/assets/6bcc351d-af73-46a3-8d69-7989ec7c20d3)
 
+### POST de um Evento
+
+![image](https://github.com/user-attachments/assets/693fc287-7283-4f4a-9a44-6b10de6c3967)
+
+![image](https://github.com/user-attachments/assets/384e6349-8e6e-427c-ada0-2520c0b6f4a2)
+
+![image](https://github.com/user-attachments/assets/328f450e-4afa-41a6-9469-ccd5a5bd6d60)
+
+### GET Evento
+
+![image](https://github.com/user-attachments/assets/54b19a28-dcaa-483f-96f0-aa78ea321291)
+
+### PUT de um Evento
+
+Foi alterado a data e local do evento
+
+![image](https://github.com/user-attachments/assets/3d5daec7-dbaa-4644-8504-fef0d75c3bbc)
+
+![image](https://github.com/user-attachments/assets/681b1278-edb3-4d13-9a8b-39a7b777ad68)
+
+![image](https://github.com/user-attachments/assets/c4a36234-c2c7-4c14-8b13-08aea96029f8)
+
+### DELETE de um Evento
+
+![image](https://github.com/user-attachments/assets/40a98b6d-d6aa-4fd5-b6f5-f5d6b1f4355d)
+
+![image](https://github.com/user-attachments/assets/aee0bfa8-d877-4747-9507-d11e3074db07)
+
+## Event-registration
+
+### POST Inscrição
+
+### GET Inscrição
+
+### DELETE Inscrição
 
 
