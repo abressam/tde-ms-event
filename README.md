@@ -1326,8 +1326,25 @@ Foi alterado a data e local do evento
 
 ### POST Inscrição
 
+![image](https://github.com/user-attachments/assets/ec46b66b-3f0d-4ad2-b31f-eac0ee27f7f3)
+
+![image](https://github.com/user-attachments/assets/718e1f20-ef12-47fc-a557-3c1e7e92c881)
+
+![image](https://github.com/user-attachments/assets/75baab6b-afd4-46b3-80dc-f2f50477228d)
+
 ### GET Inscrição
 
+![image](https://github.com/user-attachments/assets/cf9aaca6-39fb-438e-84b6-07ab13455f58)
+
 ### DELETE Inscrição
+
+![image](https://github.com/user-attachments/assets/e363250e-b247-4627-a328-270e5a20f825)
+
+![image](https://github.com/user-attachments/assets/14a32197-129a-4c44-b568-280361107616)
+
+![image](https://github.com/user-attachments/assets/4f33e4de-4579-4c4e-b9a6-d6dbd352f1be)
+
+
+
 
 
