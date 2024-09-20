@@ -1,6 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { EventModule } from '@app/modules/event/event.module';
-import { EventController } from '@app/modules/event/controllers/event.controller';
 import { SessionMiddleware } from '@app/modules/session/middlewares/session.middleware';
 import { SessionModule } from '@app/modules/session/session.module';
 import { EventRegistrationModule } from '@app/modules/event-registration/event.registration.module';
@@ -33,8 +32,10 @@ export class AppModule implements NestModule {
       { path: 'user/get', method: RequestMethod.GET },
       { path: 'user/put', method: RequestMethod.PUT },
       { path: 'user/delete', method: RequestMethod.DELETE },
+      { path: 'event/post', method: RequestMethod.POST },
+      { path: 'event/put', method: RequestMethod.PUT },
+      { path: 'event/delete/:id', method: RequestMethod.DELETE },
+      EventRegistrationController
     );
-    consumer.apply(SessionMiddleware).forRoutes(EventController);
-    consumer.apply(SessionMiddleware).forRoutes(EventRegistrationController);
   }
 }

@@ -3,7 +3,7 @@ import { User } from '@app/modules/user/models/user.model';
 import { Event } from '@app/modules/event/models/event.model'; 
 
 @Table({
-  tableName: 'EventRegistration',
+  tableName: 'Event_Registration',
   timestamps: false,
 })
 export class EventRegistration extends Model {

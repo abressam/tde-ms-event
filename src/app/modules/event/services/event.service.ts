@@ -18,7 +18,7 @@ export class EventService implements EventServiceInterface {
   async getEvent(): Promise<GetEventResDto> {
     const events = await this.eventModel.findAll();
 
-    this.validateEvent(events[0]);
+    // this.validateEvent(events[0]);
 
     return { 
       event: events.map((event) => {
@@ -31,6 +31,15 @@ export class EventService implements EventServiceInterface {
     this.validateAuth(isAdmin);
 
     await this.checkEventExists(body.name);
+
+    const createdEvent = await this.eventModel.create({
+      name: body.name,
+      eventDate: body.eventDate,
+      location: body.location,
+      description: body.description
+    })
+
+    const { ...event } = createdEvent.toJSON();
 
     return { 
       event: [{

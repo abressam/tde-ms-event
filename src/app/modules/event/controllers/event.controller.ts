@@ -111,7 +111,7 @@ export class EventController implements EventControllerInterface {
     }
   }
 
-  @Delete('delete')
+  @Delete('delete/:id')
   @HttpCode(200)
   @ApiBearerAuth('auth')
   @ApiOperation({ summary: 'Delete the event data' })
@@ -125,11 +125,12 @@ export class EventController implements EventControllerInterface {
     description: 'Internal server error',
     type: ErrorDto,
   })
-  async deleteEvent(@Param() params: DeleteEventReqDto, @Request() req: Request) {
+  async deleteEvent(@Param('id') id: string, @Request() req: Request) {
     const logger = new Logger(EventController.name);
 
     try {
-      const eventId = params.id;
+      const eventId = parseInt(id, 10);
+      console.log("Valor do eventId: ", eventId);
       const isAdmin = req['isAdmin'];
       logger.log('deleteEvent()');
       return await this.eventService.deleteEvent(eventId, isAdmin);

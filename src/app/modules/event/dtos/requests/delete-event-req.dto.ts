@@ -5,5 +5,5 @@ export class DeleteEventReqDto {
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
-  id: number;
+  id: string;
 }
